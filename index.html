@@ -10,11 +10,43 @@
     <title>D&D random encounter</title>
 </head>
 <body>
+    <header>
+        <div class="hgauche header">
+        </div>
+        <div class="hmilieu header">
+        <h1 class="centrer">D&D Encounter</h1>
+        <p class="centrer">génération aléatoire de rencontres pour Héros et Dragons et Donjons et Dragons</p>
+        </div>
+        <div class="hdroite header">
+        </div>
+    </header>
     <main>
-        <h1 id="monsterName"></h1>
-        <p id="danger"></p>
-        <p id="xp"></p>
-        <button id="encore">encore</button>
+        <section id="pjNumber">
+            <form action="#" method="post">
+                <label for="teamCrowd">Combien de PJ constituent votre équipe ?</label>
+                <input type="number" name="teamCrowd" id="teamCrowd">
+                <button id="teamCrowdCheck">étape suivante</button>
+            </form>
+        </section>
+        <section id="pjLevel" class="hidden">
+
+        </section>
+        <section id="encounterLevel" class="hidden">
+            <h3>Quel niveau de difficulté ?</h3>
+            <div id="difBtn">
+                <button id="easy" class="boutonPC">Aisée</button>
+                <button id="average" class="boutonPC">ordinaire</button>
+                <button id="hard" class="boutonPC">hardue</button>
+                <button id="awful" class="boutonPC">abominable</button>
+            </div>
+        </section>
+        <section id="result" class="hidden">
+
+            <h1 id="monsterName"></h1>
+            <p id="danger"></p>
+            <p id="xp"></p>
+            <button id="encore">encore</button>
+        </section>
     </main>
 </body>
 </html>
