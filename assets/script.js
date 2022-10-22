@@ -46,6 +46,7 @@ difCheck.addEventListener('click', function(e){
         difIndice = veryHard.value;
     }
         pjNumber.classList.remove('hidden')
+        pjNumber.classList.add('pjNumber')
     })
     
 
@@ -74,7 +75,7 @@ teamCrowdCheck.addEventListener('click', function(e){
     newForm.appendChild(newButton)
     pjLevel.classList.remove('hidden')
 
-//on a fait apparaître la section pjLevel, maintenant on utilise le bouton pjLevelButton afin de faire apparaître la section résultats
+//on a fait apparaître la section pjLevel, maintenant on utilise le bouton pjLevelButton afin de faire apparaître la section résultats et calculet le totalPcPj
 
     newButton.addEventListener('click', function(e){
         const pjLevelInput = document.querySelectorAll('.pjLevelInput')
@@ -82,7 +83,7 @@ teamCrowdCheck.addEventListener('click', function(e){
         for(const pjLevelIn of pjLevelInput){
             let PcPj = (PC[difIndice][parseInt(pjLevelIn.value)-1])/4;
             totalPcPj += PcPj;
-            console.log(totalPcPj);
+            
         }
         result.classList.remove('hidden');
     })

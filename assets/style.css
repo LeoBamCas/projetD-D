@@ -1,10 +1,28 @@
 header {
 
-    background-color:rgba(200,200,200,0.9);
+    background: linear-gradient(rgb(165, 165, 164),white);
     margin: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+section{
+    padding: 10vw;
+}
+h3{
+    text-align: center;
+}
+#difCheck{
+    margin-top: 5vh;
+}
+#pjLevel{
+    background: linear-gradient(white,rgb(165,165,164));
+}
+.pjNumber{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(rgb(165, 165, 164),white);
 }
 .hgauche {
     background-image: url("../img/HD.png");
@@ -32,4 +50,26 @@ header {
 }
 .hidden{
     display: none;
+}
+.colmn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.encounterLevel{
+    background: linear-gradient(white,rgb(165,165,164));
+}
+.flex{
+    display: flex;
+    justify-content: center;
+}
+.iconeDifficulte{
+    width: 10vw;
 }

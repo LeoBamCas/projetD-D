@@ -1,59 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./assets/script.js" defer></script>
-    <link rel="stylesheet" href="./assets/style.css">
-    <link rel="icon" href="./img/HD.png">
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="icon" href="./img/HD.png" />
     <title>D&D random encounter</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="hgauche header">
-        </div>
-        <div class="hmilieu header">
+      <div class="hgauche header"></div>
+      <div class="hmilieu header">
         <h1 class="centrer">D&D Encounter</h1>
-        <p class="centrer">génération aléatoire de rencontres pour Héros et Dragons et Donjons et Dragons</p>
-        </div>
-        <div class="hdroite header">
-        </div>
+        <p class="centrer">
+          génération de rencontres aléatoires pour la 5èm
+        </p>
+      </div>
+      <div class="hdroite header"></div>
     </header>
     <main>
-        <section id="encounterLevel">
-            <h3>Quelle difficulté ?</h3>
-            <div id="difBtn">
-                <form action="#" method="post">
-                    <label for="easy">Aisé</label>
-                    <input type="radio" name="difficulty" id="easy" value="0">
-                    <label for="average">Ordinaire</label>
-                    <input type="radio" name="difficulty" id="average" required="required" value="1">
-                    <label for="hard">Ardue</label>
-                    <input type="radio" name="difficulty" id="hard" value="2">
-                    <label for="veryHard">Abominable</label>
-                    <input type="radio" name="difficulty" id="veryHard" value="3">
-                    <button id="difCheck">Allons-y !</button>
-                </form>
+      <section id="encounterLevel" class="encounterLevel">
+        <h3>Quelle difficulté ?</h3>
+        <div id="difBtn" >
+          <form action="#" method="post">
+            <div class="row">
+              <div class="colmn">
+                <div class="colmn">
+
+                    <label for="easy">Aisée</label>
+                    <input type="radio" name="difficulty" id="easy" value="0" />
+                </div>
+                <img src="./img/gobelin.png" class="iconeDifficulte">
+              </div>
+              <div class="colmn">
+                <div class="colmn">
+                <label for="average">Ordinaire</label>
+                <input
+                  type="radio"
+                  name="difficulty"
+                  id="average"
+                  required="required"
+                  value="1"
+                />
             </div>
-        </section>
-        <section id="pjNumber"  class="hidden">
-            <form action="#" method="post">
-                <label for="teamCrowd">Combien de PJ constituent votre équipe ?</label>
-                <input type="number" name="teamCrowd" id="teamCrowd" required="required">
-                <button id="teamCrowdCheck">étape suivante</button>
-            </form>
-        </section>
-        <section id="pjLevel" class="hidden">
-
-        </section>
-        <section id="result" class="hidden">
-
-            <h1 id="monsterName"></h1>
-            <p id="danger"></p>
-            <p id="xp"></p>
-            <button id="encore">encore</button>
-        </section>
+                <img src="./img/orc.png" class="iconeDifficulte">
+              </div>
+              <div class="colmn">
+                <div class="colmn">
+                <label for="hard">Ardue</label>
+                <input type="radio" name="difficulty" id="hard" value="2" />
+            </div>
+                <img src="./img/demon.png" class="iconeDifficulte">
+              </div>
+              <div class="colmn">
+                <div class="colmn">
+                <label for="veryHard">Abominable</label>
+                <input type="radio" name="difficulty" id="veryHard" value="3" />
+            </div>
+                <img src="./img/liche.png" class="iconeDifficulte">
+              </div>
+            </div>
+            <div class="flex">
+                <button id="difCheck">Allons-y !</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section id="pjNumber" class="hidden">
+        <form action="#" method="post">
+          <label for="teamCrowd"
+            >Combien de PJ constituent votre équipe ?</label
+          >
+          <input
+            type="number"
+            name="teamCrowd"
+            id="teamCrowd"
+            required="required"
+          />
+          <button id="teamCrowdCheck">étape suivante</button>
+        </form>
+        <img id="#teamImg" src="./img/team.png" />
+      </section>
+      <section id="pjLevel" class="hidden"></section>
+      <section id="result" class="hidden">
+        <h1 id="monsterName"></h1>
+        <p id="danger"></p>
+        <p id="xp"></p>
+        <button id="encore">encore</button>
+      </section>
     </main>
-</body>
+  </body>
 </html>
