@@ -13,6 +13,10 @@ const pjLevel = document.querySelector('#pjLevel');
 const encounterLevel = document.querySelector('#encounterLevel');
 const boutonPC = document.querySelectorAll('.boutonPC');
 const result = document.querySelector('#result');
+const pjNumber = document.querySelector('#pjNumber');
+const difCheck = document.querySelector('#difCheck');
+let difIndice;
+let pjTeam;
 let PC = [
     [15,25,32,45,70,90,105,130,135,140,160,180,200,210,225,240,285,300,330,370],
     [25,40,60,80,120,140,160,180,200,210,240,270,310,330,360,400,480,510,600,700],
@@ -20,16 +24,29 @@ let PC = [
     [40,70,100,120,200,230,260,300,330,350,460,520,620,700,770,820,910,950,1000,11000]
 ]
 
-//création des différents champs d'input afin de receuillir les données pour filtrer les rencontres
+// on commence par demander un niveau de difficulté
 
-//premier champ : le nombre de joueur, avec la génération d'un nombre d'input de niveaux corrélés au nombre de PJ
+
+    difCheck.addEventListener('click', function(e){
+        e.preventDefault();
+        pjNumber.classList.remove('hidden')
+    })
+    
+
+
+//second champ : le nombre de joueur, avec la génération d'un nombre d'input de niveaux corrélés au nombre de PJ
 
 teamCrowdCheck.addEventListener('click', function(e){
     e.preventDefault()
     let newForm;
+    pjTeam =  parseInt(teamCrowd.value);
     for(let i = 0; i< parseInt(teamCrowd.value); i++){
         newForm =  document.createElement('form');
         pjLevel.appendChild(newForm);
+        let newLabel = document.createElement('label');
+        newLabel.for = `pjLevelCheck${i}`;
+        newLabel.textContent = `niveau du personnage joueur ${i+1}`;
+        newForm.appendChild(newLabel);
         let newInput = document.createElement('input');
         newInput.id = `pjLevelCheck${i}`;
         newForm.appendChild(newInput)
@@ -44,7 +61,7 @@ teamCrowdCheck.addEventListener('click', function(e){
 
     newButton.addEventListener('click', function(e){
         e.preventDefault()
-        encounterLevel.classList.remove('hidden');
+        result.classList.remove('hidden');
     })
 
 
@@ -107,13 +124,3 @@ encore.addEventListener('click', function(e){
     start();
 })
 
-
-// affichage du résultat
-
-for (const bouton of boutonPC){
-    bouton.addEventListener('click', function(e){
-        e.preventDefault();
-        result.classList.remove('hidden')
-
-    })
-}

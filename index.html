@@ -21,24 +21,31 @@
         </div>
     </header>
     <main>
-        <section id="pjNumber">
+        <section id="encounterLevel">
+            <h3>Quelle difficulté ?</h3>
+            <div id="difBtn">
+                <form action="#" method="post">
+                    <label for="easy">Aisé</label>
+                    <input type="radio" name="difficulty" id="easy">
+                    <label for="average">Ordinaire</label>
+                    <input type="radio" name="difficulty" id="average" required="required">
+                    <label for="hard">Ardue</label>
+                    <input type="radio" name="difficulty" id="hard">
+                    <label for="veryHard">Abominable</label>
+                    <input type="radio" name="difficulty" id="veryHard">
+                    <button id="difCheck">Allons-y !</button>
+                </form>
+            </div>
+        </section>
+        <section id="pjNumber"  class="hidden">
             <form action="#" method="post">
                 <label for="teamCrowd">Combien de PJ constituent votre équipe ?</label>
-                <input type="number" name="teamCrowd" id="teamCrowd">
+                <input type="number" name="teamCrowd" id="teamCrowd" required="required">
                 <button id="teamCrowdCheck">étape suivante</button>
             </form>
         </section>
         <section id="pjLevel" class="hidden">
 
-        </section>
-        <section id="encounterLevel" class="hidden">
-            <h3>Quel niveau de difficulté ?</h3>
-            <div id="difBtn">
-                <button id="easy" class="boutonPC">Aisée</button>
-                <button id="average" class="boutonPC">ordinaire</button>
-                <button id="hard" class="boutonPC">hardue</button>
-                <button id="awful" class="boutonPC">abominable</button>
-            </div>
         </section>
         <section id="result" class="hidden">
 
