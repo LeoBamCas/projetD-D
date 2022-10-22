@@ -1,3 +1,13 @@
+
+@font-face {
+    font-family:'Enchanted' ;
+    src: url('../fonts/enchanted_land/Enchanted\ Land.otf');
+}
+
+body{
+    font-family: 'Enchanted';
+}
+
 header {
 
     background: linear-gradient(rgb(165, 165, 164),white);
@@ -6,17 +16,54 @@ header {
     flex-direction: row;
     justify-content: center;
 }
-section{
-    padding: 10vw;
+footer{
+    background: linear-gradient(rgb(165, 165, 164),white);
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+p {
+    font-size: 4vh;
+    margin: 0;
+}
+section{
+    padding: 5vw 5vw;
+}
+h1{
+    font-size: 10vh;
+    text-decoration: underline;
+    margin-bottom: 0;
+}
+
 h3{
     text-align: center;
+    margin-bottom: 6vh;
+    text-decoration: underline;
+    font-size: 6vh;
+}
+label{
+    font-size: 4vh;
 }
 #difCheck{
     margin-top: 5vh;
 }
 #pjLevel{
     background: linear-gradient(white,rgb(165,165,164));
+}
+#pjNumber{
+    padding: 5vh 20vw;
+}
+#pjNumber form{
+    align-self: flex-start;
+}
+#teamImg{
+    width: 40vw;
+}
+#randomMonsterSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .pjNumber{
     display: flex;
@@ -56,6 +103,7 @@ h3{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin: 1vw;
 }
 
 .row{
@@ -71,5 +119,5 @@ h3{
     justify-content: center;
 }
 .iconeDifficulte{
-    width: 10vw;
+    width: 17vw;
 }

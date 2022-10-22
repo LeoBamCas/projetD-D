@@ -12,7 +12,7 @@ const teamCrowdCheck = document.querySelector('#teamCrowdCheck');
 const pjLevel = document.querySelector('#pjLevel');
 const encounterLevel = document.querySelector('#encounterLevel');
 const boutonPC = document.querySelectorAll('.boutonPC');
-const result = document.querySelector('#result');
+const randomMonsterSection = document.querySelector('#randomMonsterSection');
 const pjNumber = document.querySelector('#pjNumber');
 const difCheck = document.querySelector('#difCheck');
 const easy = document.querySelector('#easy');
@@ -28,6 +28,29 @@ let PC = [
     [33,55,80,100,160,185,210,240,265,280,350,395,465,515,565,610,695,730,800,900],
     [40,70,100,120,200,230,260,300,330,350,460,520,620,700,770,820,910,950,1000,11000]
 ]
+
+
+
+// on fait un tableau avec tous les index de l'API
+let tableauIndex = []
+
+fetch(api).then(handleFetch);
+    
+function handleFetch(responseText){
+    if (responseText.ok){
+        responseText.json()
+                    .then(fillTableau)
+                    .catch(error=>console.log(error));
+    }else{
+        console.log(responseText.statusText);
+    }
+}
+const fillTableau = function(data){
+    for(i = 0; i< data.results.length;i++){
+        tableauIndex.push(data.results[i].index);
+    }
+}
+
 
 // on commence par demander un niveau de difficulté et récupérer l'indice dont on a besoin via checkbox
 
@@ -132,8 +155,8 @@ const start =  function(){
         }
     
         const displayChallengInfo = (data)=>{
-            danger.textContent = data.challenge_rating;
-            xp.textContent = data.xp;
+            danger.textContent = 'Indice de danger : ' + data.challenge_rating;
+            xp.textContent = "points d'expérience : " +data.xp;
     
         }
     }
