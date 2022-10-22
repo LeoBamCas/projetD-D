@@ -15,8 +15,13 @@ const boutonPC = document.querySelectorAll('.boutonPC');
 const result = document.querySelector('#result');
 const pjNumber = document.querySelector('#pjNumber');
 const difCheck = document.querySelector('#difCheck');
+const easy = document.querySelector('#easy');
+const average = document.querySelector('#average');
+const hard = document.querySelector('#hard');
+const veryHard = document.querySelector('#veryHard');
 let difIndice;
 let pjTeam;
+let totalPcPj = 0;
 let PC = [
     [15,25,32,45,70,90,105,130,135,140,160,180,200,210,225,240,285,300,330,370],
     [25,40,60,80,120,140,160,180,200,210,240,270,310,330,360,400,480,510,600,700],
@@ -24,11 +29,22 @@ let PC = [
     [40,70,100,120,200,230,260,300,330,350,460,520,620,700,770,820,910,950,1000,11000]
 ]
 
-// on commence par demander un niveau de difficulté
+// on commence par demander un niveau de difficulté et récupérer l'indice dont on a besoin via checkbox
 
 
-    difCheck.addEventListener('click', function(e){
-        e.preventDefault();
+
+difCheck.addEventListener('click', function(e){
+    e.preventDefault();
+    if (easy.checked){
+        difIndice = easy.value;
+    
+    }else if(average.checked){
+        difIndice = average.value;
+    }else if (hard.checked){
+        difIndice = hard.value;
+    }else if(veryHard.checked){
+        difIndice = veryHard.value;
+    }
         pjNumber.classList.remove('hidden')
     })
     
@@ -49,6 +65,7 @@ teamCrowdCheck.addEventListener('click', function(e){
         newForm.appendChild(newLabel);
         let newInput = document.createElement('input');
         newInput.id = `pjLevelCheck${i}`;
+        newInput.classList.add('pjLevelInput')
         newForm.appendChild(newInput)
     }
     let newButton = document.createElement('button')
@@ -57,10 +74,16 @@ teamCrowdCheck.addEventListener('click', function(e){
     newForm.appendChild(newButton)
     pjLevel.classList.remove('hidden')
 
-//on a fait apparaître la section pjLevel, maintenant on utilise le bouton pjLevelButton afin de faire apparaître l'avant dernière section
+//on a fait apparaître la section pjLevel, maintenant on utilise le bouton pjLevelButton afin de faire apparaître la section résultats
 
     newButton.addEventListener('click', function(e){
+        const pjLevelInput = document.querySelectorAll('.pjLevelInput')
         e.preventDefault()
+        for(const pjLevelIn of pjLevelInput){
+            let PcPj = (PC[difIndice][parseInt(pjLevelIn.value)-1])/4;
+            totalPcPj += PcPj;
+            console.log(totalPcPj);
+        }
         result.classList.remove('hidden');
     })
 
