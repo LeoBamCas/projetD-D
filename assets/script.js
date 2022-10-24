@@ -22,6 +22,7 @@ const veryHard = document.querySelector('#veryHard');
 const selectedMonsterName = document.querySelector('#selectedMonsterName');
 const selectedMonsterDanger = document.querySelector('#selectedMonsterDanger');
 const selectedMonsterXp = document.querySelector('#selectedMonsterXp');
+const selectedMonsterPc = document.querySelector('#selectedMonsterPc');
 let difIndice;
 let pjTeam;
 let totalPcPj = 0;
@@ -242,7 +243,9 @@ teamCrowdCheck.addEventListener('click', function(e){
                 console.log(responseText.statusText);
             }
         }
+        //on filtre les monstres parmis lesquels faire une selection aléatoire en plaçant les objets dans un tableau
         const filterMonstersIndex = (data) =>{
+            
             for (const monster of data.results){
                 let index = monster.index
                 const monsterInfos = `https://www.dnd5eapi.co/api/monsters/${index}`
@@ -266,18 +269,21 @@ teamCrowdCheck.addEventListener('click', function(e){
         }
                 
             }
+            // on affiche les infos d'une entrée du tableau selectionné aléatoire
             console.log(tableauSelected);
             console.log(Math.floor(Math.random()*tableauSelected.length));
-            let selectedMonster = tableauSelected[1];
-            console.log(selectedMonster);
+            console.log(tableauSelected.length);
+            let selectedMonster = tableauSelected[Math.floor(Math.random()*tableauSelected.length)];
             selectedMonsterName.textContent = selectedMonster.name;
-            selectedMonsterDanger.textContent = dcToPc(selectedMonster.challenge_rating);
-            selectedMonsterXp.textContent = selectedMonster.xp;
+            selectedMonsterDanger.textContent = 'id : ' +selectedMonster.challenge_rating;
+            selectedMonsterPc.textContent = 'pc :' + dcToPc(selectedMonster.challenge_rating);
+            selectedMonsterXp.textContent = 'xp :' + selectedMonster.xp;
             
         }
-
         result.classList.remove('hidden');
         result.classList.add('apparition');
+        result.classList.add('result');
+
     })
 
 
