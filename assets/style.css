@@ -6,6 +6,7 @@
 
 body{
     font-family: 'Enchanted';
+    color: #602960;
 }
 
 header {
@@ -35,6 +36,10 @@ h1{
     text-decoration: underline;
     margin-bottom: 0;
 }
+h2{
+    margin:0%;
+    font-size: 5vh;
+}
 
 h3{
     text-align: center;
@@ -50,12 +55,19 @@ label{
 }
 #pjLevel{
     background: linear-gradient(white,rgb(165,165,164));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
 }
 #pjNumber{
     padding: 5vh 20vw;
 }
 #pjNumber form{
     align-self: flex-start;
+    height: 15vh;
 }
 #teamImg{
     width: 40vw;
@@ -65,11 +77,16 @@ label{
     flex-direction: column;
     align-items: center;
 }
+#result{
+    background-color: rgb(165,165,164);
+}
 .pjNumber{
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: linear-gradient(rgb(165, 165, 164),white);
+    position: relative;
+    z-index: 3;
 }
 .hgauche {
     background-image: url("../img/HD.png");
@@ -113,6 +130,8 @@ label{
 }
 .encounterLevel{
     background: linear-gradient(white,rgb(165,165,164));
+    position: relative;
+    z-index: 4;
 }
 .flex{
     display: flex;
@@ -120,4 +139,18 @@ label{
 }
 .iconeDifficulte{
     width: 17vw;
+}
+
+.apparition{
+    animation-name: 'apparition';
+    animation-duration: 0.8s;
+}
+
+@keyframes apparition {
+    0%{
+        transform: translateY(-500px) ;
+    }
+    100%{
+        transform: translateY(0) ;
+    }
 }

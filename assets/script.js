@@ -50,7 +50,114 @@ const fillTableau = function(data){
         tableauIndex.push(data.results[i].index);
     }
 }
+// on crée une fonction qui tranform les display challenge en PC
 
+function dcToPc(dc){
+    switch (dc){
+        case 0:
+            return 1;
+            break;
+        case 0.125:
+            return 5;
+            break;
+        case 0.25:
+            return 9;
+            break;
+        case 0.5:
+            return 15;
+            break;
+        case 1:
+            return 25;
+            break;
+        case 2:
+            return 40;
+            break;
+        case 3:
+            return 60;
+            break;
+        case 4:
+            return 85;
+            break;
+        case 5:
+            return 110;
+            break;
+        case 6:
+            return 135;
+            break;
+        case 7:
+            return 160;
+            break;
+        case 8:
+            return 185;
+            break;
+        case 9:
+            return 210;
+            break;
+        case 10:
+            return 230;
+            break;
+        case 11:
+            return 265;
+            break;
+        case 12:
+            return 300;
+            break;
+        case 13:
+            return 330;
+            break;
+        case 14:
+            return 370;
+            break;
+        case 15:
+            return 420;
+            break;
+        case 16:
+            return 475;
+            break;
+        case 17:
+            return 525;
+            break;
+        case 18:
+            return 620;
+            break;
+        case 19:
+            return 675;
+            break;
+        case 20:
+            return 770;
+            break;
+        case 21:
+            return 870;
+            break;
+        case 22:
+            return 995;
+            break;
+        case 23:
+            return 1100;
+            break;
+        case 24:
+            return 1240;
+            break;
+        case 25:
+            return 1450;
+            break;
+        case 26:
+            return 1700;
+            break;
+        case 27:
+            return 1950;
+            break;
+        case 28:
+            return 2200;
+            break;
+        case 29:
+            return 2450;
+            break;
+        case 30:
+            return 2700;
+            break;
+    }
+}
 
 // on commence par demander un niveau de difficulté et récupérer l'indice dont on a besoin via checkbox
 
@@ -68,8 +175,9 @@ difCheck.addEventListener('click', function(e){
     }else if(veryHard.checked){
         difIndice = veryHard.value;
     }
-        pjNumber.classList.remove('hidden')
-        pjNumber.classList.add('pjNumber')
+        pjNumber.classList.remove('hidden');
+        pjNumber.classList.add('apparition');
+        pjNumber.classList.add('pjNumber');
     })
     
 
@@ -88,15 +196,18 @@ teamCrowdCheck.addEventListener('click', function(e){
         newLabel.textContent = `niveau du personnage joueur ${i+1}`;
         newForm.appendChild(newLabel);
         let newInput = document.createElement('input');
+        newInput.value = 5;
+        newInput.type = "number";
         newInput.id = `pjLevelCheck${i}`;
-        newInput.classList.add('pjLevelInput')
-        newForm.appendChild(newInput)
+        newInput.classList.add('pjLevelInput');
+        newForm.appendChild(newInput);
     }
-    let newButton = document.createElement('button')
+    let newButton = document.createElement('button');
     newButton.id = `pjLevelCheckButton`;
-    newButton.textContent = 'on y est presque !'
-    newForm.appendChild(newButton)
-    pjLevel.classList.remove('hidden')
+    newButton.textContent = 'on y est presque !';
+    pjLevel.appendChild(newButton);
+    pjLevel.classList.remove('hidden');
+    pjLevel.classList.add('apparition');
 
 //on a fait apparaître la section pjLevel, maintenant on utilise le bouton pjLevelButton afin de faire apparaître la section résultats et calculet le totalPcPj
 
@@ -108,7 +219,9 @@ teamCrowdCheck.addEventListener('click', function(e){
             totalPcPj += PcPj;
             
         }
+        
         result.classList.remove('hidden');
+        result.classList.add('apparition');
     })
 
 
