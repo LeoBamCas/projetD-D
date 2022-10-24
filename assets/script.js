@@ -19,15 +19,20 @@ const easy = document.querySelector('#easy');
 const average = document.querySelector('#average');
 const hard = document.querySelector('#hard');
 const veryHard = document.querySelector('#veryHard');
+const selectedMonsterName = document.querySelector('#selectedMonsterName');
+const selectedMonsterDanger = document.querySelector('#selectedMonsterDanger');
+const selectedMonsterXp = document.querySelector('#selectedMonsterXp');
 let difIndice;
 let pjTeam;
 let totalPcPj = 0;
+let minusPcPj = 0;
 let PC = [
     [15,25,32,45,70,90,105,130,135,140,160,180,200,210,225,240,285,300,330,370],
     [25,40,60,80,120,140,160,180,200,210,240,270,310,330,360,400,480,510,600,700],
     [33,55,80,100,160,185,210,240,265,280,350,395,465,515,565,610,695,730,800,900],
     [40,70,100,120,200,230,260,300,330,350,460,520,620,700,770,820,910,950,1000,11000]
 ]
+let tableauSelected= [];
 
 
 
@@ -207,6 +212,7 @@ teamCrowdCheck.addEventListener('click', function(e){
     newButton.textContent = 'on y est presque !';
     pjLevel.appendChild(newButton);
     pjLevel.classList.remove('hidden');
+    pjLevel.classList.add('pjLevel')
     pjLevel.classList.add('apparition');
 
 //on a fait apparaître la section pjLevel, maintenant on utilise le bouton pjLevelButton afin de faire apparaître la section résultats et calculet le totalPcPj
@@ -217,15 +223,68 @@ teamCrowdCheck.addEventListener('click', function(e){
         for(const pjLevelIn of pjLevelInput){
             let PcPj = (PC[difIndice][parseInt(pjLevelIn.value)-1])/4;
             totalPcPj += PcPj;
+            if(difIndice>0){
+                minusPcPj += (PC[difIndice -1][parseInt(pjLevelIn.value)-1])/4;
+            }
+        }
+
+
+//fonction pour trier les monstres de l'API et les stocker dans un tableau au clic
+
+        fetch(api).then(handleFetch);
+            
+        function handleFetch(responseText){
+            if (responseText.ok){
+                responseText.json()
+                            .then(filterMonstersIndex)
+                            .catch(error=>console.log(error));
+            }else{
+                console.log(responseText.statusText);
+            }
+        }
+        const filterMonstersIndex = (data) =>{
+            for (const monster of data.results){
+                let index = monster.index
+                const monsterInfos = `https://www.dnd5eapi.co/api/monsters/${index}`
+                fetch(monsterInfos).then(travailFetch);
+    
+        function travailFetch(responseText){
+            if (responseText.ok){
+                responseText.json()
+                            .then(pushMonsterInfos)
+                            .catch(error=>console.log(error));
+            }else{
+                console.log(responseText.statusText);
+            }
+    
+        }
+
+        const pushMonsterInfos = (data) => {
+            if(dcToPc(data.challenge_rating)>= minusPcPj && dcToPc(data.challenge_rating)<= totalPcPj){
+                tableauSelected.push(data);
+            }
+        }
+                
+            }
+            console.log(tableauSelected);
+            console.log(Math.floor(Math.random()*tableauSelected.length));
+            let selectedMonster = tableauSelected[1];
+            console.log(selectedMonster);
+            selectedMonsterName.textContent = selectedMonster.name;
+            selectedMonsterDanger.textContent = dcToPc(selectedMonster.challenge_rating);
+            selectedMonsterXp.textContent = selectedMonster.xp;
             
         }
-        
+
         result.classList.remove('hidden');
         result.classList.add('apparition');
     })
 
 
 })
+
+
+
 
 //crée une fonction qui va chercher dans l'API un monstre aléatoire et en traite les données
 const start =  function(){
