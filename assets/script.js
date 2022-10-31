@@ -22,7 +22,7 @@ const selectedMonsterName = document.querySelector('#selectedMonsterName')
 const selectedMonsterDanger = document.querySelector('#selectedMonsterDanger')
 const selectedMonsterXp = document.querySelector('#selectedMonsterXp')
 const selectedMonsterPc = document.querySelector('#selectedMonsterPc')
-let selectedMonster;
+let selectedMonster
 let difIndice
 let pjTeam
 let totalPcPj = 0
@@ -297,10 +297,10 @@ teamCrowdCheck.addEventListener('click', function (e) {
   //on a fait apparaître la section pjLevel, maintenant on utilise le bouton pjLevelButton afin de faire apparaître la section résultats et calculet le totalPcPj
 
   newButton.addEventListener('click', function (e) {
-      e.preventDefault()
+    e.preventDefault()
     const pjLevelInput = document.querySelectorAll('.pjLevelInput')
-    let PcPj = 0;
-    minusPcPj = 0;
+    let PcPj = 0
+    minusPcPj = 0
     for (const pjLevelIn of pjLevelInput) {
       PcPj = PC[difIndice][parseInt(pjLevelIn.value) - 1] / 4
       totalPcPj += PcPj
@@ -329,56 +329,40 @@ teamCrowdCheck.addEventListener('click', function (e) {
         let index = monster.index
         const monsterInfos = `https://www.dnd5eapi.co/api/monsters/${index}`
         fetch(monsterInfos).then(travailFetch)
-
-        function travailFetch (responseText) {
-          if (responseText.ok) {
-            responseText
-              .json()
-              .then(pushMonsterInfos)
-              .catch(error => console.log(error))
-          } else {
-            console.log(responseText.statusText)
-          }
+      }
+      function travailFetch (responseText) {
+        if (responseText.ok) {
+          responseText
+            .json()
+            .then(pushMonsterInfos)
+            .catch(error => console.log(error))
+        } else {
+          console.log(responseText.statusText)
         }
-
-        const pushMonsterInfos = data => {
-            tableauSelected = [];
-          if (
-            dcToPc(data.challenge_rating) >= minusPcPj &&
-            dcToPc(data.challenge_rating) <= totalPcPj
-          ) {
-            tableauSelected.push(data)
+      }
+      
+      const pushMonsterInfos = data => {
+        tableauSelected = []
+        if (
+          dcToPc(data.challenge_rating) >= minusPcPj &&
+          dcToPc(data.challenge_rating) <= totalPcPj
+        ) {
+          tableauSelected.push(data)
         }
+        selectedMonster = tableauSelected[Math.floor(Math.random() * tableauSelected.length)]
+        console.log(tableauSelected)
+      }
+      selectedMonsterName.textContent = selectedMonster.name
+      selectedMonsterDanger.textContent = 'id : ' + selectedMonster.challenge_rating
+      selectedMonsterPc.textContent =  'pc : ' + dcToPc(selectedMonster.challenge_rating)
+      selectedMonsterXp.textContent = 'xp : ' + selectedMonster.xp
     }
-}
-// on affiche les infos d'une entrée du tableau selectionné aléatoire
-    selectedMonster = tableauSelected[Math.floor(Math.random() * tableauSelected.length)]
-    selectedMonsterName.textContent = selectedMonster.name
-    selectedMonsterDanger.textContent ='id : ' + selectedMonster.challenge_rating
-    selectedMonsterPc.textContent =  'pc : ' + dcToPc(selectedMonster.challenge_rating)
-    selectedMonsterXp.textContent = 'xp : ' + selectedMonster.xp
-      console.log(tableauSelected)
-      console.log(Math.floor(Math.random() * tableauSelected.length))
-      console.log(tableauSelected.length)
-    }
-    result.classList.remove('hidden');
-    result.classList.add('apparition');
-    result.classList.add('result');
+    // on affiche les infos d'une entrée du tableau selectionné aléatoire
+    result.classList.remove('hidden')
+    result.classList.add('apparition')
+    result.classList.add('result')
   })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //FOOTER
 
